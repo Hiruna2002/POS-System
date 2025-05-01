@@ -302,22 +302,22 @@
             <div class="row">
                 <div class="col">
                     <div class="col text-fields">
-                        <input type="text" class="form-control" placeholder="Customer Id" aria-label="Customer Id">
+                        <input type="text" class="form-control" id="id" placeholder="Customer Id" aria-label="Customer Id">
                     </div>
                     <div class="col text-fields">
-                        <input type="text" class="form-control" placeholder="Name" aria-label="Name">
+                        <input type="text" class="form-control" id="name" placeholder="Name" aria-label="Name">
                     </div>
                     <div class="col text-fields">
-                        <input type="text" class="form-control" placeholder="Address" aria-label="Address">
+                        <input type="text" class="form-control" id="address" placeholder="Address" aria-label="Address">
                     </div>
                     <div class="col text-fields">
-                        <input type="text" class="form-control" placeholder="Contact No" aria-label="Contact No">
+                        <input type="text" class="form-control" id="contact" placeholder="Contact No" aria-label="Contact No">
                     </div>
                 </div>
                 <div class="col">
-                    <button type="button" class="btn btn-success btn-edit">Save</button>
-                    <button type="button" class="btn btn-danger btn-edit">Update</button>
-                    <button type="button" class="btn btn-warning btn-edit">Delete</button>
+                    <button type="button" class="btn btn-success btn-edit" id="customer_save">Save</button>
+                    <button type="button" class="btn btn-danger btn-edit" id="customer_update">Update</button>
+                    <button type="button" class="btn btn-warning btn-edit" id="customer_delete">Delete</button>
                 </div>
             </div>
         </div>
@@ -421,7 +421,10 @@
     </section>
 
     <script src="assets/lib/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script type="module" src="controller/CustomerController.js"></script>
     <script>
         $("#customer_nav").on('click', function () {
             $("#customerPage").css("display", "block");
