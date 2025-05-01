@@ -223,24 +223,25 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto nav-nav">
                     <li class="nav-item mx-4">
-                        <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active text-white" id="home_nav" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item mx-4">
-                        <a class="nav-link text-white" href="#">Features</a>
+                        <a class="nav-link text-white" id="customer_nav" href="#">Customer</a>
                     </li>
                     <li class="nav-item mx-4">
-                        <a class="nav-link text-white" href="#">Pricing</a>
+                        <a class="nav-link text-white" id="order_nav" href="#">Order</a>
                     </li>
                     <li class="nav-item mx-4">
-                        <a class="nav-link text-white" href="#">Login</a>
+                        <a class="nav-link text-white" id="login_nav" href="#">Login</a>
                     </li>
                     <li class="nav-item mx-4">
-                        <a class="nav-link text-white" href="#">SignUp</a>
+                        <a class="nav-link text-white" id="signup_nav" href="#">SignUp</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+
     <section id="homePage" class="bg-image">
         <div class="box">
             <p>Car sale</p>
@@ -418,5 +419,54 @@
             </tbody>
         </table>
     </section>
+
+    <script src="assets/lib/jquery-3.7.1.min.js"></script>
+
+    <script>
+        $("#customer_nav").on('click', function () {
+            $("#customerPage").css("display", "block");
+            $("#homePage").css("display", "none");
+            $("#itemDetails").css("display", "none");
+            $("#orderDetails").css("display", "none");
+            $("#signUpPage").css("display", "none");
+            $("#loginPage").css("display", "none");
+        })
+
+        $("#order_nav").on('click', function () {
+            $("#customerPage").css("display", "none");
+            $("#homePage").css("display", "none");
+            $("#itemDetails").css("display", "none");
+            $("#orderDetails").css("display", "block");
+            $("#signUpPage").css("display", "none");
+            $("#loginPage").css("display", "none");
+        })
+
+        $("#home_nav").on('click', function () {
+            $("#customerPage").css("display", "none");
+            $("#homePage").css("display", "block");
+            $("#itemDetails").css("display", "none");
+            $("#orderDetails").css("display", "none");
+            $("#signUpPage").css("display", "none");
+            $("#loginPage").css("display", "none");
+        })
+
+        $("#signup_nav").on('click', function () {
+            $("#customerPage").css("display", "none");
+            $("#homePage").css("display", "none");
+            $("#itemDetails").css("display", "none");
+            $("#orderDetails").css("display", "none");
+            $("#signUpPage").css("display", "block");
+            $("#loginPage").css("display", "none");
+        })
+
+        $("#login_nav").on('click', function () {
+            $("#customerPage").css("display", "nav");
+            $("#homePage").css("display", "none");
+            $("#itemDetails").css("display", "none");
+            $("#orderDetails").css("display", "none");
+            $("#signUpPage").css("display", "none");
+            $("#loginPage").css("display", "block");
+        })
+    </script>
 </body>
 </html>
