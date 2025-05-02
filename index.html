@@ -229,6 +229,9 @@
                         <a class="nav-link text-white" id="customer_nav" href="#">Customer</a>
                     </li>
                     <li class="nav-item mx-4">
+                        <a class="nav-link text-white" id="item_nav" href="#">Item</a>
+                    </li>
+                    <li class="nav-item mx-4">
                         <a class="nav-link text-white" id="order_nav" href="#">Order</a>
                     </li>
                     <li class="nav-item mx-4">
@@ -245,14 +248,14 @@
     <section id="homePage" class="bg-image">
         <div class="box">
             <p>Car sale</p>
-            <button type="button" class="btn btn-primary">Login</button>
-            <button type="button" class="btn btn-primary">SignUp</button>
+            <button type="button" class="btn btn-primary" id="home_login">Login</button>
+            <button type="button" class="btn btn-primary" id="home_signUp">SignUp</button>
         </div>
     </section>
 
     <section id="loginPage" class="bg-image">
         <div class="box">
-            <p>Don't have an Account? <a href="#">Login</a> </p>
+            <p>Don't have an Account? <a href="#" id="login_signup">SignUp</a> </p>
             <div class="row g-3 position">
                 <div class="col">
                     <input type="text" class="form-control txtname login-user-name" placeholder="User name" aria-label="User name">
@@ -269,7 +272,7 @@
 
     <section id="signUpPage" class="bg-image">
         <div class="box">
-            <p>Have an Account? <a href="#">Login</a> </p>
+            <p>Have an Account? <a href="#" id="signup_login">Login</a> </p>
             <div class="row g-3 position">
                 <div class="col">
                     <input type="text" class="form-control txtname" placeholder="First name" aria-label="First name">
@@ -342,22 +345,22 @@
             <div class="row">
                 <div class="col">
                     <div class="col text-fields">
-                        <input type="text" class="form-control" placeholder="Item Code" aria-label="Item Code">
+                        <input type="text" class="form-control" id="code" placeholder="Item Code" aria-label="Item Code">
                     </div>
                     <div class="col text-fields">
-                        <input type="text" class="form-control" placeholder="Name" aria-label="Name">
+                        <input type="text" class="form-control" id="iName" placeholder="Name" aria-label="Name">
                     </div>
                     <div class="col text-fields">
-                        <input type="text" class="form-control" placeholder="Price" aria-label="Price">
+                        <input type="text" class="form-control" id="price" placeholder="Price" aria-label="Price">
                     </div>
                     <div class="col text-fields">
-                        <input type="text" class="form-control" placeholder="Qty" aria-label="Qty">
+                        <input type="text" class="form-control" id="qty" placeholder="Qty" aria-label="Qty">
                     </div>
                 </div>
                 <div class="col">
-                    <button type="button" class="btn btn-success btn-edit">Save</button>
-                    <button type="button" class="btn btn-danger btn-edit">Update</button>
-                    <button type="button" class="btn btn-warning btn-edit">Delete</button>
+                    <button type="button" class="btn btn-success btn-edit" id="item-save">Save</button>
+                    <button type="button" class="btn btn-danger btn-edit" id="item_update">Update</button>
+                    <button type="button" class="btn btn-warning btn-edit" id="item_delete">Delete</button>
                 </div>
             </div>
         </div>
@@ -382,25 +385,25 @@
             <div class="row">
                 <div class="col">
                     <div class="col text-fields">
-                        <input type="text" class="form-control" placeholder="Order Id" aria-label="Item Code">
+                        <input type="text" class="form-control" id="oId" placeholder="Order Id" aria-label="Order Id">
                     </div>
                     <div class="col text-fields">
-                        <input type="text" class="form-control" placeholder="Customer Id" aria-label="Name">
+                        <input type="text" class="form-control" id="cId" placeholder="Customer Id" aria-label="Customer Id">
                     </div>
                     <div class="col text-fields">
-                        <input type="text" class="form-control" placeholder="Item Code" aria-label="Price">
+                        <input type="text" class="form-control" id="iCode" placeholder="Item Code" aria-label="Item Code">
                     </div>
                     <div class="col text-fields">
-                        <input type="text" class="form-control" placeholder="Qty" aria-label="Qty">
+                        <input type="text" class="form-control" id="oQty" placeholder="Qty" aria-label="Qty">
                     </div>
                     <div class="col text-fields">
-                        <input type="text" class="form-control" placeholder="Price" aria-label="Qty">
+                        <input type="text" class="form-control" id="oPrice" placeholder="Price" aria-label="Price">
                     </div>
                 </div>
                 <div class="col">
-                    <button type="button" class="btn btn-success btn-edit">Save</button>
-                    <button type="button" class="btn btn-danger btn-edit">Update</button>
-                    <button type="button" class="btn btn-warning btn-edit">Delete</button>
+                    <button type="button" class="btn btn-success btn-edit" id="orderDetails_save">Save</button>
+                    <button type="button" class="btn btn-danger btn-edit" id="orderDetails_update">Update</button>
+                    <button type="button" class="btn btn-warning btn-edit" id="orderDetails_delete">Delete</button>
                 </div>
             </div>
         </div>
@@ -425,11 +428,22 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script type="module" src="controller/CustomerController.js"></script>
+    <script type="module" src="controller/ItemController.js"></script>
+    <script type="module" src="controller/OrderDetailsController.js"></script>
     <script>
         $("#customer_nav").on('click', function () {
             $("#customerPage").css("display", "block");
             $("#homePage").css("display", "none");
             $("#itemDetails").css("display", "none");
+            $("#orderDetails").css("display", "none");
+            $("#signUpPage").css("display", "none");
+            $("#loginPage").css("display", "none");
+        })
+
+        $("#item_nav").on('click', function () {
+            $("#customerPage").css("display", "none");
+            $("#homePage").css("display", "none");
+            $("#itemDetails").css("display", "block");
             $("#orderDetails").css("display", "none");
             $("#signUpPage").css("display", "none");
             $("#loginPage").css("display", "none");
@@ -469,6 +483,26 @@
             $("#orderDetails").css("display", "none");
             $("#signUpPage").css("display", "none");
             $("#loginPage").css("display", "block");
+        })
+
+        $("#login_signup").on('click',function () {
+            $("#loginPage").css("display", "none");
+            $("#signUpPage").css("display", "block");
+        })
+
+        $("#signup_login").on('click',function () {
+            $("#loginPage").css("display", "block");
+            $("#signUpPage").css("display", "none");
+        })
+
+        $('#home_login').on('click',function () {
+            $("#loginPage").css("display", "block");
+            $("#homePage").css("display", "none");
+        })
+
+        $('#home_signUp').on('click',function () {
+            $("#homePage").css("display", "none");
+            $("#signUpPage").css("display", "block");
         })
     </script>
 </body>
