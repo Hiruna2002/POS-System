@@ -258,7 +258,7 @@
             <p>Don't have an Account? <a href="#" id="login_signup">SignUp</a> </p>
             <div class="row g-3 position">
                 <div class="col">
-                    <input type="text" class="form-control txtname login-user-name" placeholder="User name" aria-label="User name">
+                    <input type="text" class="form-control txtname login-user-name" id="userName" placeholder="User name(First Name)" aria-label="User name">
                 </div>
             </div>
             <div class="row g-3 align-items-center position-password">
@@ -266,7 +266,7 @@
                     <input type="password" id="inputLoginPassword6" class="form-control edit-login-password" aria-describedby="passwordHelpInline" placeholder="Password">
                 </div>
             </div>
-            <button type="button" class="btn btn-primary btn-lg btn-btn-btn">Login</button>
+            <button type="button" class="btn btn-primary btn-lg btn-btn-btn" id="login_login">Login</button>
         </div>
     </section>
 
@@ -275,10 +275,10 @@
             <p>Have an Account? <a href="#" id="signup_login">Login</a> </p>
             <div class="row g-3 position">
                 <div class="col">
-                    <input type="text" class="form-control txtname" placeholder="First name" aria-label="First name">
+                    <input type="text" class="form-control txtname" id="fName" placeholder="First name" aria-label="First name">
                 </div>
                 <div class="col">
-                    <input type="text" class="form-control txtname lname" placeholder="Last name" aria-label="Last name">
+                    <input type="text" class="form-control txtname lname" id="lName" placeholder="Last name" aria-label="Last name">
                 </div>
             </div>
             <div class="row g-3 align-items-center position-password">
@@ -295,7 +295,7 @@
                     <input type="password" id="confirmpassword" class="form-control" aria-describedby="passwordHelpInline" placeholder="Confirm Password">
                 </div>
             </div>
-            <button type="button" class="btn btn-primary btn-lg btn-btn-btn">SignUp</button>
+            <button type="button" class="btn btn-primary btn-lg btn-btn-btn" id="signUp_signUp">SignUp</button>
         </div>
     </section>
 
@@ -430,6 +430,8 @@
     <script type="module" src="controller/CustomerController.js"></script>
     <script type="module" src="controller/ItemController.js"></script>
     <script type="module" src="controller/OrderDetailsController.js"></script>
+    <script type="module" src="controller/SignUpController.js"></script>
+    <script type="module" src="controller/LoginController.js"></script>
     <script>
         $("#customer_nav").on('click', function () {
             $("#customerPage").css("display", "block");
@@ -503,6 +505,11 @@
         $('#home_signUp').on('click',function () {
             $("#homePage").css("display", "none");
             $("#signUpPage").css("display", "block");
+        })
+
+        $('#login_login').on('click',function () {
+            $("#loginPage").css("display", "none");
+            $("#customerPage").css("display", "block");
         })
     </script>
 </body>

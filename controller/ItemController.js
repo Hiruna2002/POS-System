@@ -23,10 +23,7 @@ $("#item-save").on('click',function (){
 
         loadTableData();
 
-        $('#code').val('');
-        $('#iName').val('');
-        $('#price').val('');
-        $('#qty').val('');
+        clear();
 
         Swal.fire({
             title: "Added Successfully!",
@@ -55,8 +52,10 @@ function loadTableData(){
     })
 }
 
+let idx = -1;
+
 $("#item_tbody").on('click', 'tr', function () {
-    let idx = $(this).index();
+    idx = $(this).index();
     console.log(idx);
 
     let obj = item_db[idx]
@@ -72,3 +71,67 @@ $("#item_tbody").on('click', 'tr', function () {
     $("#price").val(price);
     $("#qty").val(qty);
 })
+
+$("#item_update").on('click',function () {
+    if (idx === -1){
+        alert("please select to Item")
+        return
+    }
+
+    let code = $('#code').val();
+    let iName = $('#iName').val();
+    let price = $('#price').val();
+    let qty = $('#qty').val();
+
+    item_db[idx].code = code;
+    item_db[idx].iName = iName;
+    item_db[idx].price = price;
+    item_db [idx].qty = qty;
+
+    loadTableData();
+
+    idx = -1
+    clear();
+
+    Swal.fire({
+        title: "Updated Successfully!",
+        icon: "success",
+    });
+})
+
+$("#item_delete").on('click',function () {
+    if (idx === -1){
+        alert("select Items")
+        return
+    }
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "This Customer will be removed permanently.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!'
+
+    }).then((result)=>{
+        if (result.isConfirmed){
+            item_db.splice(idx,1);
+
+            loadTableData();
+
+            idx = -1;
+            clear();
+
+            Swal.fire({
+                title: 'Deleted!',
+                text: 'The Customer has been removed.',
+                icon: 'success'
+            });
+        }
+    })
+})
+
+function clear(){
+    $('#code').val('');
+    $('#iName').val('');
+    $('#price').val('');
+    $('#qty').val('');
+}

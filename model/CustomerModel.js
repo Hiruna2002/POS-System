@@ -4,6 +4,5 @@ export default class CustomerModel{
         this.name = name;
         this.address = address;
         this.contact = contact;
-
     }
 }
