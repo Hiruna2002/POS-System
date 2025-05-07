@@ -467,12 +467,13 @@
         })
 
         $("#signup_nav").on('click', function () {
-            $("#customerPage").css("display", "none");
-            $("#homePage").css("display", "none");
-            $("#itemDetails").css("display", "none");
-            $("#orderDetails").css("display", "none");
-            $("#signUpPage").css("display", "block");
-            $("#loginPage").css("display", "none");
+                $("#customerPage").css("display", "none");
+                $("#homePage").css("display", "none");
+                $("#itemDetails").css("display", "none");
+                $("#orderDetails").css("display", "none");
+                $("#signUpPage").css("display", "block");
+                $("#loginPage").css("display", "none");
+
         })
 
         $("#login_nav").on('click', function () {
@@ -504,10 +505,9 @@
             $("#signUpPage").css("display", "block");
         })
 
-        $('#login_login').on('click',function () {
-            $("#loginPage").css("display", "none");
-            $("#customerPage").css("display", "block");
-        })
+        $('#customer_nav').css("display","none");
+        $('#item_nav').css("display","none");
+        $('#order_nav').css("display","none");
     </script>
 </body>
 </html>
