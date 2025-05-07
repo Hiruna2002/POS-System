@@ -1,35 +1,66 @@
 import {orderDetails_db} from "../db/db.js";
 import OrderDetailsModel from "../model/OrderDetailsModel.js";
 
+let idx = -1;
+
 $("#orderDetails_save").on('click',function (){
-    let oId = $('#oId').val();
-    let cId = $('#cId').val();
-    let iCode = $('#iCode').val();
-    let oQty = $('#oQty').val();
-    let oPrice = $('#oPrice').val();
+    if ($('#orderDetails_save').text()==="Save"){
+        let oId = $('#oId').val();
+        let cId = $('#cId').val();
+        let iCode = $('#iCode').val();
+        let oQty = $('#oQty').val();
+        let oPrice = $('#oPrice').val();
 
-    if (oId === '' || cId === '' || iCode === '' || oQty === '' || oPrice === ''){
-        Swal.fire({
-            title: 'Error!',
-            text: 'Invalid Inputs',
-            icon: 'error',
-            confirmButtonText: 'Ok'
-        })
+        if (oId === '' || cId === '' || iCode === '' || oQty === '' || oPrice === ''){
+            Swal.fire({
+                title: 'Error!',
+                text: 'Invalid Inputs',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
+        }else {
+            let orderDetails_data = new OrderDetailsModel(oId,cId,iCode,oQty,oPrice);
+
+            orderDetails_db.push(orderDetails_data);
+
+            console.log(orderDetails_db);
+
+            loadTableData()
+
+            clear();
+
+            Swal.fire({
+                title: "Added Successfully!",
+                icon: "success",
+                draggable: true
+            });
+        }
     }else {
-        let orderDetails_data = new OrderDetailsModel(oId,cId,iCode,oQty,oPrice);
+        if (idx === -1){
+            alert("Select Orders for delete");
+            return
+        }
 
-        orderDetails_db.push(orderDetails_data);
+        let oId = $('#oId').val();
+        let cId = $('#cId').val();
+        let iCode = $('#iCode').val();
+        let oQty = $('#oQty').val();
+        let oPrice = $('#oPrice').val();
 
-        console.log(orderDetails_db);
+        orderDetails_db[idx].oId = oId;
+        orderDetails_db[idx].cId = cId;
+        orderDetails_db[idx].iCode = iCode;
+        orderDetails_db[idx].oQty = oQty;
+        orderDetails_db[idx].oPrice = oPrice;
 
-        loadTableData()
+        loadTableData();
 
+        idx = -1;
         clear();
 
         Swal.fire({
-            title: "Added Successfully!",
+            title: "Updated Successfully!",
             icon: "success",
-            draggable: true
         });
     }
 })
@@ -52,10 +83,9 @@ function loadTableData(){
                                 <td>${oPrice}</td>
                             </tr>`
         $('#order_tbody').append(data);
+
     })
 }
-
-let idx = -1;
 
 $("#order_tbody").on('click','tr',function (){
     idx = $(this).index();
@@ -72,35 +102,9 @@ $("#order_tbody").on('click','tr',function (){
     $("#iCode").val(iCode);
     $("#oQty").val(oQty);
     $("#oPrice").val(oPrice);
-})
 
-$("#orderDetails_update").on('click',function () {
-    if (idx === -1){
-        alert("Select Orders for delete");
-        return
-    }
-
-    let oId = $('#oId').val();
-    let cId = $('#cId').val();
-    let iCode = $('#iCode').val();
-    let oQty = $('#oQty').val();
-    let oPrice = $('#oPrice').val();
-
-    orderDetails_db[idx].oId = oId;
-    orderDetails_db[idx].cId = cId;
-    orderDetails_db[idx].iCode = iCode;
-    orderDetails_db[idx].oQty = oQty;
-    orderDetails_db[idx].oPrice = oPrice;
-
-    loadTableData();
-
-    idx = -1;
-    clear();
-
-    Swal.fire({
-        title: "Updated Successfully!",
-        icon: "success",
-    });
+    $('#orderDetails_save').css("background-color","red");
+    $('#orderDetails_save').text("Update");
 })
 
 $("#orderDetails_delete").on('click',function () {

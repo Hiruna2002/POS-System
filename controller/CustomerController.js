@@ -1,36 +1,70 @@
 import {customer_db} from "../db/db.js";
 import CustomerModel from "../model/CustomerModel.js";
 
+let idx = -1
+
 $("#customer_save").on('click',function (){
-    let id = $('#id').val();
-    let name = $('#name').val();
-    let address = $('#address').val();
-    let contact = $('#contact').val();
+    if ($('#customer_save').text() === "Save"){
+        let id = $('#id').val();
+        let name = $('#name').val();
+        let address = $('#address').val();
+        let contact = $('#contact').val();
 
-    if (id === '' || name === '' || address === '' || contact === ''){
-        Swal.fire({
-            title: 'Error!',
-            text: 'Invalid Inputs',
-            icon: 'error',
-            confirmButtonText: 'Ok'
-        })
-    }else {
-        let customer_data = new CustomerModel(id,name,address,contact);
+        if (id === '' || name === '' || address === '' || contact === ''){
+            Swal.fire({
+                title: 'Error!',
+                text: 'Invalid Inputs',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            })
+        }else {
+            let customer_data = new CustomerModel(id,name,address,contact);
 
-        customer_db.push(customer_data);
+            customer_db.push(customer_data);
 
-        console.log(customer_db);
+            console.log(customer_db);
 
+            loadStudents();
+
+            clear();
+
+            Swal.fire({
+                title: "Added Successfully!",
+                icon: "success",
+                draggable: true
+            });
+        }
+    } else {
+        if (idx === -1) {
+            alert("Please select a Customer to update.");
+            return;
+        }
+
+        // Get updated values from input fields
+        let id = $("#id").val();
+        let name = $("#name").val();
+        let address = $("#address").val();
+        let contact = $("#contact").val();
+
+        // Update student object
+        customer_db[idx].id = id;
+        customer_db[idx].name = name;
+        customer_db[idx].address = address;
+        customer_db[idx].contact = contact;
+
+        // Reload table
         loadStudents();
 
+        // Clear fields and selection
+        idx = -1;
         clear();
 
         Swal.fire({
-            title: "Added Successfully!",
+            title: "Updated Successfully!",
             icon: "success",
-            draggable: true
         });
     }
+
 })
 
 function loadStudents() {
@@ -51,7 +85,7 @@ function loadStudents() {
         $('#customer_tbody').append(data);
     })
 }
-    let idx = -1
+
 $("#customer_tbody").on('click', 'tr', function(){
     idx = $(this).index();
     console.log(idx);
@@ -67,37 +101,10 @@ $("#customer_tbody").on('click', 'tr', function(){
     $("#name").val(name);
     $("#address").val(address);
     $("#contact").val(contact);
-});
 
-$("#customer_update").on('click', function(){
-    if (idx === -1) {
-        alert("Please select a Customer to update.");
-        return;
-    }
+    $('#customer_save').css("background-color","red");
+    $('#customer_save').text("Update");
 
-    // Get updated values from input fields
-    let id = $("#id").val();
-    let name = $("#name").val();
-    let address = $("#address").val();
-    let contact = $("#contact").val();
-
-    // Update student object
-    customer_db[idx].id = id;
-    customer_db[idx].name = name;
-    customer_db[idx].address = address;
-    customer_db[idx].contact = contact;
-
-    // Reload table
-    loadStudents();
-
-    // Clear fields and selection
-    idx = -1;
-    clear();
-
-    Swal.fire({
-        title: "Updated Successfully!",
-        icon: "success",
-    });
 });
 
 $("#customer_delete").on('click', function () {
