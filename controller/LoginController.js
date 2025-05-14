@@ -10,17 +10,21 @@ $('#login_login').on('click',function () {
         Swal.fire({
             title: "Login Successfully!",
             icon: "success",
-        });
-            $('#loginPage').css("display","none");
-            $('#customerPage').css("display","block");
-            $('#customer_nav').css("display","block");
-            $('#item_nav').css("display","block");
-            $('#order_nav').css("display","block");
-            $('#signup_nav').css("display","none");
-            $('#login_nav').css("display","none");
+        }).then((result)=>{
+            if (result.isConfirmed){
+                $('#loginPage').css("display","none");
+                $('#customerPage').css("display","block");
+                $('#customer_nav').css("display","block");
+                $('#item_nav').css("display","block");
+                $('#order_nav').css("display","block");
+                $('#signup_nav').css("display","none");
+                $('#login_nav').css("display","none");
 
-            $('#userName').val('');
-            $('#inputLoginPassword6').val('');
+                $('#userName').val('');
+                $('#inputLoginPassword6').val('');
+            }
+        })
+
 
     } else {
         Swal.fire({

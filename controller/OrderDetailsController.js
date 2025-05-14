@@ -3,9 +3,15 @@ import OrderDetailsModel from "../model/OrderDetailsModel.js";
 
 let idx = -1;
 
-window.onload = function (){
-    loadOrderDetailsIds();
-}
+// window.onload = function (){
+//     loadOrderDetailsIds();
+// }
+
+document.addEventListener("DOMContentLoaded", function () {
+    if (document.getElementById("oId")) {
+        loadOrderDetailsIds();
+    }
+});
 
 $("#orderDetails_save").on('click',function (){
     if ($('#orderDetails_save').text()==="Save"){
@@ -147,7 +153,7 @@ $("#orderDetails_delete").on('click',function () {
 
 function loadOrderDetailsIds(){
     let count = orderDetails_db.length;
-    $('#id').val(count+1);
+    $('#oId').val(count+1);
 }
 
 function clear(){

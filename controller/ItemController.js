@@ -3,9 +3,14 @@ import ItemModel from "../model/ItemModel.js";
 
 let idx = -1;
 
-window.onload = function (){
-    loadItemIds();
-}
+// window.onload = function (){
+//     loadItemIds();
+// }
+document.addEventListener("DOMContentLoaded", function () {
+    if (document.getElementById("code")) {
+        loadItemIds();
+    }
+});
 
 $("#item-save").on('click',function (){
     if ($('#item-save').text()==="Save"){
@@ -142,7 +147,7 @@ $("#item_delete").on('click',function () {
 
 function loadItemIds(){
     let count = item_db.length;
-    $('#iCode').val(count+1);
+    $('#code').val(count+1);
 }
 
 function clear(){

@@ -3,10 +3,14 @@ import CustomerModel from "../model/CustomerModel.js";
 
 let idx = -1
 
-window.onload = function () {
-    loadCustomerIds();
-
-}
+// window.onload = function () {
+//     loadCustomerIds();
+// }
+document.addEventListener("DOMContentLoaded", function () {
+    if (document.getElementById("id")) {
+        loadCustomerIds();
+    }
+});
 
 $("#customer_save").on('click',function (){
     if ($('#customer_save').text() === "Save"){
