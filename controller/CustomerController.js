@@ -3,6 +3,11 @@ import CustomerModel from "../model/CustomerModel.js";
 
 let idx = -1
 
+window.onload = function () {
+    loadCustomerIds();
+
+}
+
 $("#customer_save").on('click',function (){
     if ($('#customer_save').text() === "Save"){
         let id = $('#id').val();
@@ -17,6 +22,7 @@ $("#customer_save").on('click',function (){
                 icon: 'error',
                 confirmButtonText: 'Ok'
             })
+            loadCustomerIds();
         }else {
             let customer_data = new CustomerModel(id,name,address,contact);
 
@@ -33,6 +39,7 @@ $("#customer_save").on('click',function (){
                 icon: "success",
                 draggable: true
             });
+            loadCustomerIds();
         }
     } else {
         if (idx === -1) {
@@ -63,6 +70,7 @@ $("#customer_save").on('click',function (){
             title: "Updated Successfully!",
             icon: "success",
         });
+        loadCustomerIds();
     }
 
 })
@@ -138,10 +146,17 @@ $("#customer_delete").on('click', function () {
                 text: 'The Customer has been removed.',
                 icon: 'success'
             });
+            loadCustomerIds();
         }
     });
 });
 
+
+function loadCustomerIds(){
+    let count = customer_db.length;
+    $('#id').val(count+1);
+    console.log("length is "+ count);
+}
 
 function clear(){
     $('#id').val('');

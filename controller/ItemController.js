@@ -3,6 +3,10 @@ import ItemModel from "../model/ItemModel.js";
 
 let idx = -1;
 
+window.onload = function (){
+    loadItemIds();
+}
+
 $("#item-save").on('click',function (){
     if ($('#item-save').text()==="Save"){
         let code = $('#code').val();
@@ -17,6 +21,7 @@ $("#item-save").on('click',function (){
                 icon: 'error',
                 confirmButtonText: 'Ok'
             })
+            loadItemIds();
         }else {
             let item_data = new ItemModel(code,iName,price,qty);
 
@@ -33,6 +38,7 @@ $("#item-save").on('click',function (){
                 icon: "success",
                 draggable: true
             });
+            loadItemIds();
         }
     }else {
         if (idx === -1){
@@ -59,8 +65,8 @@ $("#item-save").on('click',function (){
             title: "Updated Successfully!",
             icon: "success",
         });
+        loadItemIds();
     }
-
 })
 
 function loadTableData(){
@@ -81,8 +87,6 @@ function loadTableData(){
         $('#item_tbody').append(data);
     })
 }
-
-
 
 $("#item_tbody").on('click', 'tr', function () {
     idx = $(this).index();
@@ -131,9 +135,15 @@ $("#item_delete").on('click',function () {
                 text: 'The Customer has been removed.',
                 icon: 'success'
             });
+            loadItemIds();
         }
     })
 })
+
+function loadItemIds(){
+    let count = item_db.length;
+    $('#iCode').val(count+1);
+}
 
 function clear(){
     $('#code').val('');

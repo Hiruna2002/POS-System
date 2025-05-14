@@ -3,6 +3,10 @@ import OrderDetailsModel from "../model/OrderDetailsModel.js";
 
 let idx = -1;
 
+window.onload = function (){
+    loadOrderDetailsIds();
+}
+
 $("#orderDetails_save").on('click',function (){
     if ($('#orderDetails_save').text()==="Save"){
         let oId = $('#oId').val();
@@ -18,6 +22,7 @@ $("#orderDetails_save").on('click',function (){
                 icon: 'error',
                 confirmButtonText: 'Ok'
             })
+            loadOrderDetailsIds();
         }else {
             let orderDetails_data = new OrderDetailsModel(oId,cId,iCode,oQty,oPrice);
 
@@ -34,6 +39,7 @@ $("#orderDetails_save").on('click',function (){
                 icon: "success",
                 draggable: true
             });
+            loadOrderDetailsIds();
         }
     }else {
         if (idx === -1){
@@ -62,6 +68,7 @@ $("#orderDetails_save").on('click',function (){
             title: "Updated Successfully!",
             icon: "success",
         });
+        loadOrderDetailsIds();
     }
 })
 
@@ -133,9 +140,15 @@ $("#orderDetails_delete").on('click',function () {
                 text: 'The Customer has been removed.',
                 icon: 'success'
             });
+            loadOrderDetailsIds();
         }
     })
 })
+
+function loadOrderDetailsIds(){
+    let count = orderDetails_db.length;
+    $('#id').val(count+1);
+}
 
 function clear(){
     $('#oId').val('');
