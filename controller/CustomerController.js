@@ -3,13 +3,11 @@ import CustomerModel from "../model/CustomerModel.js";
 
 let idx = -1
 
-// window.onload = function () {
-//     loadCustomerIds();
-// }
 document.addEventListener("DOMContentLoaded", function () {
     if (document.getElementById("id")) {
         loadCustomerIds();
     }
+
 });
 
 $("#customer_save").on('click',function (){
@@ -43,6 +41,7 @@ $("#customer_save").on('click',function (){
                 icon: "success",
                 draggable: true
             });
+
             loadCustomerIds();
         }
     } else {
@@ -74,6 +73,8 @@ $("#customer_save").on('click',function (){
             title: "Updated Successfully!",
             icon: "success",
         });
+
+
         loadCustomerIds();
     }
 
@@ -157,9 +158,9 @@ $("#customer_delete").on('click', function () {
 
 
 function loadCustomerIds(){
-    let count = customer_db.length;
-    $('#id').val(count+1);
-    console.log("length is "+ count);
+    let count = customer_db.length + 1;
+    let newId = "C" + count.toString().padStart(3, "0");  // උදා: C001, C002 වගේ
+    $('#id').val(newId);
 }
 
 function clear(){

@@ -1,11 +1,8 @@
-import {item_db} from "../db/db.js";
+import {customer_db, item_db} from "../db/db.js";
 import ItemModel from "../model/ItemModel.js";
 
 let idx = -1;
 
-// window.onload = function (){
-//     loadItemIds();
-// }
 document.addEventListener("DOMContentLoaded", function () {
     if (document.getElementById("code")) {
         loadItemIds();
@@ -146,8 +143,9 @@ $("#item_delete").on('click',function () {
 })
 
 function loadItemIds(){
-    let count = item_db.length;
-    $('#code').val(count+1);
+    let count = item_db.length + 1;
+    let newId = "I" + count.toString().padStart(3, "0");
+    $('#code').val(newId);
 }
 
 function clear(){
