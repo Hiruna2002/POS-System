@@ -2,8 +2,6 @@ import {order_db} from "../db/db.js";
 import {customer_db} from "../db/db.js";
 import {item_db} from "../db/db.js";
 
-import CustomerModel from "../model/CustomerModel.js";
-import ItemModel from "../model/ItemModel.js";
 import OrderModel from "../model/OrderModel.js";
 
 
@@ -96,8 +94,6 @@ $('#btn_add_item').on('click', function () {
     let itemPrice = $('#item_price').val();
     let qtyOnHand = $('#item_qty').val();
     let orderQty = $('#order_qty').val();
-    let discount = $('#discount').val();
-    let balance = $('#balance').val();
 
     let oId = $('#order_id').val();
     let cId = $('#order_cus_id').val();
@@ -124,12 +120,7 @@ $('#btn_add_item').on('click', function () {
     order_db.push(order_data);
     console.log("order data: ",order_db);
 
-
-
     loadTableData();
-
-
-
 })
 
 $('#btn_purchase').on('click',function () {
@@ -138,8 +129,6 @@ $('#btn_purchase').on('click',function () {
 
     $('#balance').val(tot-discount);
 })
-
-
 
 function loadTableData() {
 
@@ -164,158 +153,4 @@ function loadTableData() {
 
         $('#order_tbody').append(data);
     })
-
-
-
 }
-
-
-
-//
-// $("#order_save").on('click',function (){
-//     if ($('#order_save').text()==="Save"){
-//         let oId = $('#oId').val();
-//         let cId = $('#cId').val();
-//         let iCode = $('#iCode').val();
-//         let oQty = $('#oQty').val();
-//         let oPrice = $('#oPrice').val();
-//
-//         if (oId === '' || cId === '' || iCode === '' || oQty === '' || oPrice === ''){
-//             Swal.fire({
-//                 title: 'Error!',
-//                 text: 'Invalid Inputs',
-//                 icon: 'error',
-//                 confirmButtonText: 'Ok'
-//             })
-//             loadOrderIds();
-//         }else {
-//             let order_data = new OrderModel(oId,cId,iCode,oQty,oPrice);
-//
-//             order_db.push(order_data);
-//
-//             console.log(order_db);
-//
-//             loadTableData()
-//
-//             clear();
-//
-//             Swal.fire({
-//                 title: "Added Successfully!",
-//                 icon: "success",
-//                 draggable: true
-//             });
-//             loadOrderIds();
-//         }
-//     }else {
-//         if (idx === -1){
-//             alert("Select Orders for delete");
-//             return
-//         }
-//
-//         let oId = $('#oId').val();
-//         let cId = $('#cId').val();
-//         let iCode = $('#iCode').val();
-//         let oQty = $('#oQty').val();
-//         let oPrice = $('#oPrice').val();
-//
-//         order_db[idx].oId = oId;
-//         order_db[idx].cId = cId;
-//         order_db[idx].iCode = iCode;
-//         order_db[idx].oQty = oQty;
-//         order_db[idx].oPrice = oPrice;
-//
-//         loadTableData();
-//
-//         idx = -1;
-//         clear();
-//
-//         Swal.fire({
-//             title: "Updated Successfully!",
-//             icon: "success",
-//         });
-//         loadOrderIds();
-//     }
-// })
-//
-// function loadTableData(){
-//     $('#order_tbody').empty();
-//
-//     order_db.map((item,index)=>{
-//         let oId = item.oId;
-//         let cId = item.cId;
-//         let iCode = item.iCode;
-//         let oQty = item.oQty;
-//         let oPrice = item.oPrice;
-//
-//         let data = `<tr>
-//                                 <td>${index+1}</td>
-//                                 <td>${cId}</td>
-//                                 <td>${iCode}</td>
-//                                 <td>${oQty}</td>
-//                                 <td>${oPrice}</td>
-//                             </tr>`
-//         $('#order_tbody').append(data);
-//
-//     })
-// }
-//
-// $("#order_tbody").on('click','tr',function (){
-//     idx = $(this).index();
-//     let obj = order_db[idx]
-//
-//     let oId = obj.oId;
-//     let cId = obj.cId;
-//     let iCode = obj.iCode;
-//     let oQty = obj.oQty;
-//     let oPrice = obj.oPrice;
-//
-//     $("#oId").val(oId);
-//     $("#cId").val(cId);
-//     $("#iCode").val(iCode);
-//     $("#oQty").val(oQty);
-//     $("#oPrice").val(oPrice);
-//
-//     $('#order_save').css("background-color","red");
-//     $('#order_save').text("Update");
-// })
-//
-// $("#order_delete").on('click',function () {
-//     if (idx === -1){
-//         alert("select Order Details");
-//         return
-//     }
-//     Swal.fire({
-//         title: 'Are you sure?',
-//         text: "This Customer will be removed permanently.",
-//         icon: 'warning',
-//         showCancelButton: true,
-//         confirmButtonText: 'Yes, delete it!'
-//
-//     }).then((result)=>{
-//         if (result.isConfirmed){
-//             order_db.splice(idx,1);
-//
-//             loadTableData();
-//
-//             idx = -1;
-//             clear();
-//
-//             Swal.fire({
-//                 title: 'Deleted!',
-//                 text: 'The Customer has been removed.',
-//                 icon: 'success'
-//             });
-//             loadOrderIds();
-//         }
-//     })
-// })
-//
-
-//
-// function clear(){
-//     $('#oId').val('');
-//     $('#cId').val('');
-//     $('#iCode').val('');
-//     $('#oQty').val('');
-//     $('#oPrice').val('');
-// }

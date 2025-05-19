@@ -29,7 +29,28 @@ $("#signUp_signUp").on('click',function () {
             confirmButtonText: 'Ok'
         })
     }
-    let signUp_data = new SignUpModel(fName,lName,password,cPassword);
+
+    // function validatePassword(password) {
+    //     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+    //     return regex.test(password);
+    // }
+    //
+    // function checkPassword() {
+    //     const pwd = document.getElementById("inputPassword6").value;
+    //
+    //     if (!validatePassword(pwd)) {
+    //         Swal.fire({
+    //             title: 'Error!',
+    //             text: 'Password not Strong',
+    //             icon: 'error',
+    //             confirmButtonText: 'Ok'
+    //         })
+    //     }
+    //
+    // }
+
+
+        let signUp_data = new SignUpModel(fName,lName,password,cPassword);
 
     signUp_db.push(signUp_data);
 
@@ -45,4 +66,9 @@ $("#signUp_signUp").on('click',function () {
             $('#loginPage').css("display","block");
         }
     })
+
+    function validatePassword(password) {
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+        return regex.test(password);
+    }
 })
