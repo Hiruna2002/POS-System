@@ -7,28 +7,33 @@ $("#signUp_signUp").on('click',function () {
     let password = $('#inputPassword6').val();
     let cPassword = $('#confirmpassword').val();
 
-    if (password !== cPassword){
+    if (fName !== '' && lName !== '' && password !== '' && cPassword !== ''){
+        if (password !== cPassword){
+            Swal.fire({
+                title: 'Error!',
+                text: 'Password and Confirm Password Does not match',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            }).then((result)=>{
+                if (result.isConfirmed){
+                    $('#inputPassword6').val('');
+                    $('#confirmpassword').val('');
+                }
+            })
+            return
+        }
+    }else {
         Swal.fire({
             title: 'Error!',
-            text: 'Password and Confirm Password Does not match',
-            icon: 'error',
-            confirmButtonText: 'Ok'
-        }).then((result)=>{
-            if (result.isConfirmed){
-                $('#inputPassword6').val('');
-                $('#confirmpassword').val('');
-            }
-        })
-        return
-    }
-    if (fName === '' || lName === '' || password === '' || cPassword === ''){
-        Swal.fire({
-            title: 'Error!',
-            text: 'Invalid Inputs',
+            text: 'Some Field are Missing',
             icon: 'error',
             confirmButtonText: 'Ok'
         })
+        return;
     }
+
+
+
 
     // function validatePassword(password) {
     //     const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;

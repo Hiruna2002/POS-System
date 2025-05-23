@@ -102,7 +102,7 @@ $('#btn_add_item').on('click', function () {
 
     let total = itemPrice * orderQty;
 
-    if (qtyOnHand < orderQty){
+    if (qtyOnHand > orderQty){
         Swal.fire({
             title: 'Error!',
             text: 'Out Of Stock',
@@ -118,7 +118,6 @@ $('#btn_add_item').on('click', function () {
     let order_data = new OrderModel(oId,cId,code,date,orderQty,total);
 
     order_db.push(order_data);
-    console.log("order data: ",order_db);
 
     loadTableData();
 })

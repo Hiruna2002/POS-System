@@ -73,6 +73,8 @@ $("#customer_save").on('click',function (){
             title: "Updated Successfully!",
             icon: "success",
         });
+        $('#customer_save').css("background-color","green");
+        $('#customer_save').text("Save");
 
 
         loadCustomerIds();
@@ -151,6 +153,8 @@ $("#customer_delete").on('click', function () {
                 text: 'The Customer has been removed.',
                 icon: 'success'
             });
+            $('#customer_save').css("background-color","green");
+            $('#customer_save').text("Save");
             loadCustomerIds();
         }
     });
@@ -159,7 +163,7 @@ $("#customer_delete").on('click', function () {
 
 function loadCustomerIds(){
     let count = customer_db.length + 1;
-    let newId = "C" + count.toString().padStart(3, "0");  // උදා: C001, C002 වගේ
+    let newId = "C" + count.toString().padStart(3, "0");
     $('#id').val(newId);
 }
 

@@ -67,6 +67,8 @@ $("#item-save").on('click',function (){
             title: "Updated Successfully!",
             icon: "success",
         });
+        $("#item-save").css("background-color","green");
+        $("#item-save").text("Save");
         loadItemIds();
     }
 })
@@ -137,6 +139,8 @@ $("#item_delete").on('click',function () {
                 text: 'The Customer has been removed.',
                 icon: 'success'
             });
+            $("#item-save").css("background-color","green");
+            $("#item-save").text("Save");
             loadItemIds();
         }
     })
